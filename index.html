@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>我的网站导航</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+	<header></header>
+	<main>
+		<div class="wrapper" id="mainXXXXX">
+		</div>
+	</main>
+	<footer></footer>
+	<script>
+		keys = {
+			'0': {0:'q',1:'w',2:'e',3:'r',4:'t',5:'y',6:'u',7:'i',8:'o',9:'p',length:10},
+			'1': {0:'a',1:'s',2:'d',3:'f',4:'g',5:'h',6:'j',7:'k',8:'l',length:9},
+			'2': {0:'z',1:'x',2:'c',3:'v',4:'b',5:'n',6:'m',7:'i',length:8},
+			length: 3
+		}
+
+		hash = {
+            'q': 'qq.com',
+            'w': 'weibo.com',
+            'e': 'ele.me',
+            'r': 'renren.com',
+            't': 'tianya.com',
+            'y': 'youtube.com',
+            'u': 'uc.com',
+            'i': 'iqiyi.com',
+            'o': 'opera.com',
+            'p': undefined,
+            'a': 'acfun.tv',
+            's': 'sohu.com',
+            'z': 'zhihu.com',
+            'm': 'www.mcdonalds.com.cn'
+		}
+
+		hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')//取出localstorage中的zzz对应的hash
+		if(hashInLocalStorage){
+			hash = hashInLocalStorage
+		}
+
+           index = 0
+           while(index<keys['length']){
+              divXXXXX = document.createElement('div')
+              mainXXXXX.appendChild(divXXXXX)
+              row = keys[index]
+
+              index2 = 0
+              while(index2 < row['length']){
+              kbdXXXXX = document.createElement('kbd')
+              divXXXXX.appendChild(kbdXXXXX)
+              kbdXXXXX.textContent = row[index2]//qwe
+
+              buttonX = document.createElement('button')
+              kbdXXXXX.appendChild(buttonX)
+              buttonX.textContent = '编辑'
+
+              buttonX.id = row[index2]
+              buttonX.onclick = function(asfdsf){
+                key = asfdsf['target']['id']
+              	x = prompt('请输入一个网址')
+              	hash[key] = x//hash变更
+                localStorage.setItem('zzz',JSON.stringify(hash))
+                console.log(hash)
+
+              }           
+              index2 =index2+1
+              }
+             index = index+1
+           }
+            
+            document.onkeypress = function(asfdsf){
+            	key = asfdsf['key']//q w e...
+            	website = hash[key]//得到站点链接地址
+            	//console.log(website)
+            	//location.href = 'http://'+website
+            	window.open('http://'+website,'_blank')
+            }
+	</script>
+</body>
+</html>
